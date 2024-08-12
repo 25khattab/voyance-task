@@ -4,15 +4,8 @@ import {
   text,
   primaryKey,
 } from "drizzle-orm/sqlite-core";
-import { createClient } from "@libsql/client";
-import { drizzle } from "drizzle-orm/libsql";
 import type { AdapterAccountType } from "next-auth/adapters";
 
-export const client = createClient({
-  url: "file:./db/sqlite.db",
-  authToken: "...",
-});
-export const db = drizzle(client);
 
 export const users = sqliteTable("user", {
   id: text("id")
@@ -23,6 +16,14 @@ export const users = sqliteTable("user", {
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image"),
   admin: integer("admin", { mode: "boolean" }).default(false),
+});
+export const appointments = sqliteTable("appointment", {
+  id: text("id")
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+  approved: integer("approved", { mode: "boolean" }).default(false),
+  createdAt: integer('created_at', { mode: 'timestamp' }),
+  userId: integer("user_id").references(() => users.id)
 });
 
 export const accounts = sqliteTable(

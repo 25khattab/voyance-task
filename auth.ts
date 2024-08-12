@@ -1,15 +1,18 @@
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import NextAuth, { DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
-import { db, users } from "@/db/schema";
+import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
+import { db } from "@/db/connection";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
   adapter: DrizzleAdapter(db),
+  pages: {
+    signIn: "/login",
+  },
   callbacks: {
     async session({ session, user }) {
-      
       const isAdmin =
         (
           await db
@@ -18,7 +21,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             .where(eq(users.id, session.user.id))
         ).at(0)?.admin ?? false;
       session.user.admin = isAdmin;
-    
+
       return session;
     },
   },

@@ -14,6 +14,14 @@ CREATE TABLE `account` (
 	FOREIGN KEY (`userId`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
+CREATE TABLE `appointment` (
+	`id` text PRIMARY KEY NOT NULL,
+	`approved` integer DEFAULT false,
+	`created_at` integer,
+	`user_id` integer,
+	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
+);
+--> statement-breakpoint
 CREATE TABLE `authenticator` (
 	`credentialID` text NOT NULL,
 	`userId` text NOT NULL,
