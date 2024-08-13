@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import { NextAuthProvider } from "@/components/next-auth-provider";
 import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
@@ -8,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="min-h-dvh bg-background font-sans antialiased">
         <ThemeProvider
           attribute="class"
@@ -16,8 +17,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
+          <NextAuthProvider>
+            <Navbar />
+            {children}
+          </NextAuthProvider>
         </ThemeProvider>
       </body>
     </html>

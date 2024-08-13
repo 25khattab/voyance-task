@@ -3,7 +3,6 @@ import { getAppointments } from "@/data-access/appointments";
 
 export default async function Home() {
   const appointments = await getAppointments();
-  console.log(appointments)
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-between p-24">
       <h1>Make An Appointment</h1>

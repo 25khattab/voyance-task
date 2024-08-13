@@ -1,17 +1,11 @@
 import { Dispatch, SetStateAction } from "react";
 import { Button } from "../ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "../ui/dialog";
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "../ui/dialog";
 
 import dayjs from "dayjs";
 import timezone from "dayjs/plugin/timezone";
 import utc from "dayjs/plugin/utc"; // ES 2015
-import { bookAppointment } from "./actions";
+import { approveAppointment, rejectAppointment } from "./actions";
 
 dayjs.extend(utc);
 dayjs.extend(timezone);
@@ -20,25 +14,30 @@ type Props = {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   bookingDate: string | null;
+  appointmentId: string | null;
 };
-export default function BookAppointmentDialog({
-  bookingDate,
-  open,
-  setOpen,
-}: Props) {
-  const handleConfirmAppointment = async () => {
-    await bookAppointment(bookingDate!);
+export default function ManageAppointmentDialog({ bookingDate, appointmentId, open, setOpen }: Props) {
+  const handleApproveAppointment = async () => {
+    if (!appointmentId) return;
+    await approveAppointment(appointmentId);
     setOpen(false);
   };
+
+  const handleRejectAppointment = async () => {
+    if (!appointmentId) return;
+    await rejectAppointment(appointmentId);
+    setOpen(false);
+  };
+
   if (bookingDate == null) return <></>;
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Book an Appointment</DialogTitle>
+          <DialogTitle>Manage an Appointment</DialogTitle>
         </DialogHeader>
         <div>
-          You are going to book an appointment at{" "}
+          You are going to approve or reject an appointment at{" "}
           {dayjs(bookingDate).tz(dayjs.tz.guess()).format("YYYY-MM-DD h:mm A")}
         </div>
 
@@ -46,17 +45,13 @@ export default function BookAppointmentDialog({
           <Button
             type="submit"
             onClick={async () => {
-              await handleConfirmAppointment();
+              await handleApproveAppointment();
             }}
           >
-            Book
+            Accept
           </Button>
-          <Button
-            type="button"
-            variant={"destructive"}
-            onClick={() => setOpen(false)}
-          >
-            Cancel
+          <Button type="button" variant={"destructive"} onClick={async () => await handleRejectAppointment()}>
+            Reject
           </Button>
         </DialogFooter>
       </DialogContent>

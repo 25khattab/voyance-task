@@ -16,18 +16,31 @@
     }
 }
 
+.fc-direction-ltr .fc-timegrid-col-events{
+    margin:0; 
+}
+
+.fc-timegrid-event .fc-event-main{
+    padding:3px !important;
+    border-radius: 3px !important;
+}
 
 .fc-event {
-    @apply bg-destructive border-primary/40 !important;
+    @apply bg-transparent  !important;
+    // border-radius: 3px !important;
 }
+
 .fc-timegrid-event{
-    border:none !important;
-    box-shadow: none !important
+    border:0px !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin-bottom: 0 !important
 }
 
 .fc-non-business {
     @apply bg-gray-400 bg-opacity-30 !important;
 }
+
 .fc-timegrid-slot-label-cushion{
     @apply px-3 py-3 !important
 }
@@ -35,9 +48,11 @@
 .fc-col-header-cell{
     @apply items-center justify-center px-1 !important
 }
+
 .fc-button:disabled {
     opacity: 0.30 !important;
 }
+
 .fc-day-today {
     @apply bg-primary/85 !important
 }
