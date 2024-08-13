@@ -1,0 +1,43 @@
+.fc-toolbar-chunk {
+    .btn {
+        @apply inline-flex items-center ring-0 border-none rounded-md bg-primary/40 px-3 py-2 text-sm font-semibold text-white hover:bg-primary/50 shadow-none;
+    }
+    .btn:disabled {
+        @apply bg-primary/20 cursor-auto;
+    }
+    .btn:not(:disabled):active {
+        @apply bg-primary/60;
+    }
+    .btn:not(:disabled):focus {
+        @apply shadow-none;
+    }
+    .btn:not(:disabled):active:focus {
+        @apply shadow-none;
+    }
+}
+
+
+.fc-event {
+    @apply bg-destructive border-primary/40 !important;
+}
+.fc-timegrid-event{
+    border:none !important;
+    box-shadow: none !important
+}
+
+.fc-non-business {
+    @apply bg-gray-400 bg-opacity-30 !important;
+}
+.fc-timegrid-slot-label-cushion{
+    @apply px-3 py-3 !important
+}
+
+.fc-col-header-cell{
+    @apply items-center justify-center px-1 !important
+}
+.fc-button:disabled {
+    opacity: 0.30 !important;
+}
+.fc-day-today {
+    @apply bg-primary/85 !important
+}

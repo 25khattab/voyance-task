@@ -17,8 +17,8 @@ CREATE TABLE `account` (
 CREATE TABLE `appointment` (
 	`id` text PRIMARY KEY NOT NULL,
 	`approved` integer DEFAULT false,
-	`created_at` integer,
-	`user_id` integer,
+	`created_at` text,
+	`user_id` text,
 	FOREIGN KEY (`user_id`) REFERENCES `user`(`id`) ON UPDATE no action ON DELETE no action
 );
 --> statement-breakpoint
