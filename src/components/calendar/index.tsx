@@ -18,7 +18,6 @@ export default function Calendar({ handleDateClick, events, eventContent, handle
     <FullCalendar
       plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
       initialView="dayGridMonth"
-      dateClick={handleDateClick}
       contentHeight={"auto"}
       allDaySlot={false}
       headerToolbar={{
@@ -31,7 +30,25 @@ export default function Calendar({ handleDateClick, events, eventContent, handle
       slotMaxTime={"22:00:00"}
       eventContent={eventContent}
       events={events}
-      eventClick={handleEventClick}
+      dateClick={(dateInfo) => {
+        const today = new Date();
+        const eventDate = new Date(dateInfo.date);
+        // // Check if the event date is in the past
+        if (eventDate < today) {
+          return;
+        }
+        handleDateClick && handleDateClick(dateInfo);
+      }}
+      eventClick={(clickInfo) => {
+        const today = new Date();
+        if(clickInfo.event.start==null)return
+        const eventDate = new Date(clickInfo.event.start);
+        // Check if the event date is in the past
+        if (eventDate < today) {
+          return; // Ignore clicks on events from past dates
+        }
+        handleEventClick && handleEventClick(clickInfo);
+      }}
     />
   );
 }
