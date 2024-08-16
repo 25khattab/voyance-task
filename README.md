@@ -76,6 +76,12 @@ The request body should be in JSON format and include the following fields:
 }
 ```
 
+Or Use CURL request and update the values
+
+```
+curl -X POST http://localhost:3000/api/auth/admin -H "Content-Type: application/json" -d '{ "email": "<the user email>", secretKey": "<ADMIN_SECRET_KEY>" }'
+```
+
 ## Admin Usage
 
 Admins can approve and reject appointments.
