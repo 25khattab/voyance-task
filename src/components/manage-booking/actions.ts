@@ -8,7 +8,6 @@ import { eq } from "drizzle-orm";
 export const approveAppointment = async (appointmentId: string) => {
 
   const session = await auth();
-  console.log(session)
   if (session?.user.admin !== true) return;
   await db
     .update(appointments)

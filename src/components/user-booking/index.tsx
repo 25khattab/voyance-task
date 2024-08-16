@@ -45,7 +45,6 @@ export default function UserBooking({
 }
 
 const renderEventContent = (eventInfo: any) => {
-  // console.log(eventInfo);
   // Check if the current view is timeGridWeek
   const { event } = eventInfo;
   const forUser = event.extendedProps.forUser;

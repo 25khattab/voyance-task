@@ -38,7 +38,6 @@ export default function ManageBooking({ appointments }: { appointments: appointm
 }
 
 const renderEventContent = (eventInfo: any) => {
-  // console.log(eventInfo);
   // Check if the current view is timeGridWeek
   const { event } = eventInfo;
   const backgroundColor = event.extendedProps.approved ? "green" : "red";

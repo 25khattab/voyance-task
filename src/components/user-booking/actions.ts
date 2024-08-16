@@ -12,6 +12,5 @@ export const bookAppointment = async (bookingDate: string) => {
   }
   const userId = session.user.id;
   if (userId === undefined) return;
-  console.log(bookingDate)
   await db.insert(appointments).values({ userId, createdAt: bookingDate });
 };
