@@ -24,9 +24,9 @@ Follow these steps to set up and run the application locally.
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/yourusername/medical-appointment-app.git
+   git clone https://github.com/25khattab/voyance-task.git
 
-   cd medical-appointment-app
+   cd voyance-task
    ```
 
 2. **Install the dedependencies:**
@@ -76,6 +76,16 @@ The request body should be in JSON format and include the following fields:
 }
 ```
 
+## Admin Usage
+
+Admins can approve and reject appointments.
+
+An appointment will appear as orange for the user of that Booking if it's waiting an admin approval.
+
+If an appointment is approved it will be marked as green, if not it will be deleted and will not appear anymore on the calendar.
+
+An Admin can approve and reject on any event on the calendar from any view, unlike the user who can only reserve a slot from week and day view only (because they have time slots).
+
 ## Enhancments
 
 There are several features that can be added to improve the functionality and user experience of the application:
@@ -85,5 +95,7 @@ There are several features that can be added to improve the functionality and us
 - Appointment History: Allow users to view their appointment history (currentyl the user can see his appointments in the calender marked with green or orange)
 
 - Real-time Updates: Integrate real-time updates for appointments using web sockets to reflect changes instantly on all connected clients.
+
+- For admins the appointments can have more details about the user.
 
 - Mobile Responsiveness: Enhance mobile responsiveness and ensure seamless user experience across all devices.
