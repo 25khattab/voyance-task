@@ -15,7 +15,17 @@ export default function ManageBooking({ appointments }: { appointments: appointm
     setDialogState(true);
   };
   return (
-    <div className="">
+    <div className="flex flex-col gap-3">
+      <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2">
+          <div className="h-7 w-7 rounded-full" style={{ backgroundColor: "green" }} />
+          <span>Approved Appointment</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="h-7 w-7 rounded-full" style={{ backgroundColor: "red" }} />
+          <span>Unapproved Appointment</span>
+        </div>
+      </div>
       <Calendar
         handleDateClick={undefined}
         handleEventClick={handleEventClick}

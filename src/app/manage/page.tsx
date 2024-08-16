@@ -10,9 +10,7 @@ export default async function Manage() {
   return (
     <main className="flex min-h-screen w-full flex-col items-center justify-between p-24">
       <h1>Manage Appointments</h1>
-      <div className="">
-        <ManageBooking appointments={appointments} />
-      </div>
+      <ManageBooking appointments={appointments} />
     </main>
   );
 }

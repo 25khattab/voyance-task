@@ -2,8 +2,9 @@
 import Calendar from "@/components/calendar";
 import BookAppointmentDialog from "@/components/user-booking/book-appointment-dialog";
 import { DateClickArg } from "@fullcalendar/interaction/index.js";
+import FullCalendar from "@fullcalendar/react";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function UserBooking({
   events,
@@ -16,8 +17,13 @@ export default function UserBooking({
 }) {
   const [dialogState, setDialogState] = useState(false);
   const [bookingDate, setBookingDate] = useState<string | null>(null);
+  const calendarRef = useRef<FullCalendar>(null);
   const handleDateClick = (arg: DateClickArg) => {
-    if (arg.view.type === "dayGridMonth") return;
+    if (arg.view.type === "dayGridMonth") {
+      calendarRef.current?.getApi().changeView("timeGridDay", arg.date);
+      // move the user to week view of the day he clicked on
+      return;
+    }
     if (events.some((e) => e.date === arg.dateStr)) return;
     setBookingDate(arg.dateStr);
     setDialogState(true);
@@ -38,7 +44,7 @@ export default function UserBooking({
           <span>Booked Appointment</span>
         </div>
       </div>
-      <Calendar handleDateClick={handleDateClick} events={events} eventContent={renderEventContent} />
+      <Calendar handleDateClick={handleDateClick} events={events} eventContent={renderEventContent} ref={calendarRef} />
       <BookAppointmentDialog open={dialogState} setOpen={setDialogState} bookingDate={bookingDate} />
     </div>
   );

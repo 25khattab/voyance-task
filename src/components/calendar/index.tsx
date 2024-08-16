@@ -4,6 +4,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { DateClickArg } from "@fullcalendar/interaction";
 import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
+import { forwardRef } from "react";
 import "./style.scss";
 
 type Props = {
@@ -13,9 +14,10 @@ type Props = {
   eventContent: (eventInfo: any) => JSX.Element;
 };
 
-export default function Calendar({ handleDateClick, events, eventContent, handleEventClick }: Props) {
+const Calendar = forwardRef<FullCalendar, Props>(({ handleDateClick, events, eventContent, handleEventClick }, ref) => {
   return (
     <FullCalendar
+      ref={ref} // Assign the ref to FullCalendar
       plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
       initialView="timeGridWeek"
       contentHeight={"auto"}
@@ -32,8 +34,12 @@ export default function Calendar({ handleDateClick, events, eventContent, handle
       events={events}
       dateClick={(dateInfo) => {
         const today = new Date();
+        // for the user to switch to week view of the day clicked on the month view
+        if (dateInfo.view.type === "dayGridMonth") {
+          today.setHours(0, 0, 0, 0);
+        }
         const eventDate = new Date(dateInfo.date);
-        // // Check if the event date is in the past
+        // Check if the event date is in the past
         if (eventDate < today) {
           return;
         }
@@ -41,7 +47,7 @@ export default function Calendar({ handleDateClick, events, eventContent, handle
       }}
       eventClick={(clickInfo) => {
         const today = new Date();
-        if(clickInfo.event.start==null)return
+        if (clickInfo.event.start === null) return;
         const eventDate = new Date(clickInfo.event.start);
         // Check if the event date is in the past
         if (eventDate < today) {
@@ -51,4 +57,6 @@ export default function Calendar({ handleDateClick, events, eventContent, handle
       }}
     />
   );
-}
+});
+
+export default Calendar;
