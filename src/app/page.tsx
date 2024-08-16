@@ -11,11 +11,10 @@ export default async function Home() {
     approved: e.approved ?? false,
   }));
   return (
-    <main className="flex min-h-screen w-full flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen w-full flex-col items-center justify-between gap-3 p-24">
       <h1>Make An Appointment</h1>
-      <div className="">
-        <UserBooking events={events} />
-      </div>
+
+      <UserBooking events={events} />
     </main>
   );
 }
