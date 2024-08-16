@@ -1,11 +1,13 @@
 import { signIn } from "@/auth";
+import { redirect } from "next/navigation";
 
 export default function SignInGoogleButton() {
   return (
     <form
       action={async () => {
         "use server";
-        await signIn("google", { redirectTo: "/" });
+        await signIn("google");
+        redirect("/")
       }}
     >
       <button className="flex shrink items-center gap-2 rounded-lg border border-border bg-secondary px-6 py-2 text-sm font-medium shadow-md hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
