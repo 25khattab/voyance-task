@@ -14,14 +14,14 @@ export default async function Navbar() {
       </div>
 
       <ul className="flex items-center justify-center gap-3">
-        {session && (
+        {session && session.user.admin && (
           <li className="">
             <ViewToggle />
           </li>
         )}
         {session === null ? (
           <li>
-            <Button  variant={"ghost"}>
+            <Button variant={"ghost"}>
               <a href="/login">Login</a>
             </Button>
           </li>

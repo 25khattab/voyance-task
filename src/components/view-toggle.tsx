@@ -1,20 +1,23 @@
 "use client";
+import { Shield, User } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { Switch } from "./ui/switch";
-import { Shield, User } from "lucide-react";
 
 export default function ViewToggle() {
   const currentPath = usePathname();
-  const navigate = useRouter();
+  const router = useRouter();
   return (
-    <div className="flex items-center gap-1 justify-center ">
-      <User/>
-      <Switch className=""
+    <div className="flex items-center justify-center gap-1">
+      <User />
+      <Switch
+        className=""
         onCheckedChange={(value) => {
           if (value) {
-            navigate.push("/manage");
+            router.push("/manage");
+            router.refresh();
           } else {
-            navigate.push("/");
+            router.push("/");
+            router.refresh();
           }
         }}
         checked={currentPath === "/manage"}
