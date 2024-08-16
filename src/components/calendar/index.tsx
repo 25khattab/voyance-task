@@ -17,7 +17,7 @@ export default function Calendar({ handleDateClick, events, eventContent, handle
   return (
     <FullCalendar
       plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
-      initialView="dayGridMonth"
+      initialView="timeGridWeek"
       contentHeight={"auto"}
       allDaySlot={false}
       headerToolbar={{
