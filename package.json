@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate":"cd src/db && npx drizzle-kit migrate && cd ../../"
   },
   "dependencies": {
     "@auth/drizzle-adapter": "^1.4.2",

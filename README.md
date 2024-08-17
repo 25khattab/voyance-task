@@ -35,10 +35,8 @@ Follow these steps to set up and run the application locally.
    ```
 3. **Set up the database:**
 
-   ```
-   cd src/db
-
-   npx drizzle-kit migrate
+   ```bash
+   npm run migrate
    ```
 
 4. **Set environment variables:**
@@ -62,7 +60,9 @@ Follow these steps to set up and run the application locally.
    ```
 
 ### Admin Endpoint
-The application includes an admin endpoint that allows a system user with administrative privileges to manage schedules. To access this endpoint, send a POST request to: 
+
+The application includes an admin endpoint that allows a system user with administrative privileges to manage schedules. To access this endpoint, send a POST request to:
+
 ```
 http://localhost:3000/api/auth/admin
 ```
