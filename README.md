@@ -17,7 +17,7 @@ Follow these steps to set up and run the application locally.
 
 ### Prerequisites
 
-- Node.js and npm installed on your system.
+- Node.js >= 18
 
 ### Installation
 
